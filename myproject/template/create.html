@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <section>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label>Course Name</label>
+                <input type="text" name="name">
+            </div>
+            <div>
+                <label>Name of the tutor</label>
+                <input type="text" name="tutor">
+            </div>
+            <div>
+                <label>No of credits</label>
+                <input type="number" name="credits">
+            </div>
+            <div>
+                <label>No of Students</label>
+                <input type="number" name="students">
+            </div>
+            <div>
+                <label>Select Time</label>
+                <select name="times" required>
+                    <option value="">Choose One</option>
+                    {% for t in times_list %}
+                        <option value="{{ t.id }}" {% if updates.times.id == t.id %}selected{% endif %}>{{ t.time }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

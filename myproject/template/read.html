@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+   <section>
+     <h1><span>Hello </span>Students, Learn with US</h1>
+     <div class="searches">
+        <form method="post">
+        {% csrf_token %}
+            <input type="search" name="search">
+            <button>Submit</button>
+        </form>
+     </div>
+     <div class="cards">
+        {% for i in reads%}
+            <div class="card">
+                <h2>{{i.name}}</h2>
+                <p>{{i.tutor}}</p>
+                <p>{{i.credits}}</p>
+                <p>{{i.Students}}</p>
+                <p>{{i.times}}</p>
+                <p><a href="{% url 'update' i.id %}">Update</a></p>
+                <p><a href="{% url 'delete' i.id %}">Delete</a></p>
+            </div>
+        {% endfor %}
+     </div>
+     <div>
+        <h2><a href="{% url 'create' %}">Add new Course</a></h2>
+     </div>
+     <div>
+        <h2><a href="{% url 'form' %}">Check Out</a></h2>
+     </div>
+   </section> 
+</body>
+</html>
